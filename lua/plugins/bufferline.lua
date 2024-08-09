@@ -6,6 +6,9 @@ return {
 		vim.opt.termguicolors = true
 		require("bufferline").setup({
 			options = {
+				close_command = "bdelete! %d",
+				right_mouse_command = "bdelete! %d",
+				left_mouse_command = "buffer %d",
 				offsets = {
 					{
 						filetype = "neo-tree",
@@ -17,7 +20,7 @@ return {
 			},
 		})
 
-		vim.keymap.set("n", "<S-h>", ":BufferLineCycleNext<CR>", {})
-		vim.keymap.set("n", "<S-l>", ":BufferLineCyclePrev<CR>", {})
+		vim.keymap.set("n", "<S-h>", ":bprev<CR>", {})
+		vim.keymap.set("n", "<S-l>", ":bnext<CR>", {})
 	end,
 }

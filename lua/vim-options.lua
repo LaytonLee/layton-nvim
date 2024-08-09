@@ -1,8 +1,15 @@
+-- display both absolute and relative line number
+vim.o.statuscolumn = "%s %l %r"
 vim.cmd("set number")
+vim.cmd("set rnu")
+
 vim.cmd("set cursorline")
 vim.cmd("set noexpandtab")
 vim.cmd("set tabstop=8")
 vim.cmd("set shiftwidth=8")
+vim.cmd("set ignorecase smartcase")
+vim.cmd("set wildmenu")
+vim.cmd("set wildmode=longest:full,full")
 
 local opts = { noremap = true, silent = true }
 
