@@ -22,7 +22,7 @@ vim.keymap.set("", "<Space>", "<Nop>", opts)
 vim.keymap.set("", ";", ":", opts)
 
 -- normal --
-vim.keymap.set('n', '<leader>q', ':q<CR>', opts)
+vim.keymap.set("n", "<leader>q", ":q<CR>", opts)
 -- better window navigation
 vim.keymap.set("n", "<C-h>", "<C-w>h", opts)
 vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
@@ -38,7 +38,7 @@ vim.keymap.set("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 vim.keymap.set("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 
 -- insert --
--- press jk fast to exit insert mode 
+-- press jk fast to exit insert mode
 vim.keymap.set("i", "jk", "<ESC>", opts)
 
 -- visual --
