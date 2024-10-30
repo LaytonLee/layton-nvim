@@ -9,7 +9,13 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		config = function()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "gopls", "jedi_language_server" },
+				ensure_installed = {
+					"lua_ls",
+					"gopls",
+					"pyright",
+					"tsserver",
+					"tailwindcss",
+				},
 			})
 		end,
 	},
@@ -43,9 +49,34 @@ return {
 					},
 				},
 			})
-			lspconfig.jedi_language_server.setup({
+			lspconfig.pyright.setup({
 				capabilities = capabilities,
+				filetypes = { "python" },
+				single_file_support = true,
+				settings = {
+					python = {
+						analysis = {
+							autoSearchPaths = true,
+							diagnosticMode = "openFilesOnly",
+							useLibraryCodeForTypes = true,
+						},
+					},
+				},
 			})
+
+			lspconfig.tsserver.setup({
+				capabilities = capabilities,
+				filetypes = {
+					"javascript",
+					"javascriptreact",
+					"javascript.jsx",
+					"typescript",
+					"typescriptreact",
+					"typescript.tsx",
+				},
+				single_file_support = true,
+			})
+
 
 			vim.keymap.set("n", "gh", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
