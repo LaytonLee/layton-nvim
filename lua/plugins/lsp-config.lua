@@ -77,6 +77,10 @@ return {
 				single_file_support = true,
 			})
 
+			lspconfig.tailwindcss.setup({
+				capabilities = capabilities,
+			})
+
 
 			vim.keymap.set("n", "gh", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
