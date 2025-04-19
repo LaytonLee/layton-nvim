@@ -15,6 +15,7 @@ return {
 					"pyright",
 					"tsserver",
 					"tailwindcss",
+					"nginx_language_server",
 				},
 			})
 		end,
@@ -81,6 +82,9 @@ return {
 				capabilities = capabilities,
 			})
 
+			lspconfig.nginx_language_server.setup({
+				capabilities = capabilities,
+			})
 
 			vim.keymap.set("n", "gh", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})

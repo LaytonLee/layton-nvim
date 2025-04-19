@@ -13,7 +13,8 @@ return {
 				null_ls.builtins.formatting.black, -- for python
 				null_ls.builtins.formatting.isort, -- for python
 				null_ls.builtins.formatting.gofmt, -- for go
-				require("none-ls.diagnostics.eslint_d"),  -- for typescript, javascript
+				null_ls.builtins.formatting.nginx_beautifier, -- for nginx.conf
+				require("none-ls.diagnostics.eslint_d"), -- for typescript, javascript
 			},
 		})
 
