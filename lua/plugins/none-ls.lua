@@ -9,7 +9,9 @@ return {
 		null_ls.setup({
 			sources = {
 				null_ls.builtins.formatting.stylua, -- for lua
-				null_ls.builtins.formatting.prettier, -- for vue, html, css ...
+				null_ls.builtins.formatting.prettier.with({
+					extra_args = { "--trailing-comma", "none" },
+				}),               -- for vue, html, css ...
 				null_ls.builtins.formatting.black, -- for python
 				null_ls.builtins.formatting.isort, -- for python
 				null_ls.builtins.formatting.gofmt, -- for go
