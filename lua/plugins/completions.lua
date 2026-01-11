@@ -8,13 +8,29 @@ return {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
 		},
+		config = function()
+			local snippet_path = "./snippets"
+
+			-- Load friendly-snippets
+			require("luasnip.loaders.from_vscode").lazy_load()
+
+			-- Load VSCode-style JSON snippets from the folder
+			-- It's mandatory to have a `package.json` file in the snippet directory.
+			-- For examples, see [friendly-snippets](https://github.com/rafamadriz/friendly-snippets/blob/main/package.json).
+			require("luasnip.loaders.from_vscode").lazy_load({
+				paths = { snippet_path },
+			})
+
+			-- Load Lua-style snippets from the the folder
+			require("luasnip.loaders.from_lua").lazy_load({
+				paths = { snippet_path },
+			})
+		end,
 	},
 	{
 		"hrsh7th/nvim-cmp",
 
 		config = function()
-			require("luasnip.loaders.from_vscode").lazy_load()
-
 			local check_backspace = function()
 				local col = vim.fn.col(".") - 1
 				return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
