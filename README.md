@@ -20,3 +20,14 @@ mv ~/.cache/nvim{,.bak}
 git clone https://github.com/LaytonLee/layton-nvim.git ~/.config/nvim
 ```
 
+## Dependencies
+
+### diagram.nvim
+
+#### [mermaid-cli](https://github.com/mermaid-js/mermaid-cli)
+
+install:
+
+```bash
+npm install -g @mermaid-js/mermaid-cli
+```
