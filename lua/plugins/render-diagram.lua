@@ -37,4 +37,31 @@ return {
 			},
 		},
 	},
+	config = function(_, opts)
+		-- diagram.nvim only support [Kitty](https://github.com/kovidgoyal/kitty) or [Überzug++](https://github.com/jstkdng/ueberzugpp)
+		local supported = vim.env.KITTY_WINDOW_ID
+		if not supported then
+			return
+		end
+
+		local rendering_enabled = true
+
+		local diagram = require("diagram")
+		diagram.setup(opts)
+
+		-- toggle render
+		local function toggle_diagram()
+			rendering_enabled = not rendering_enabled
+
+			if rendering_enabled then
+				print("Diagram rendering: ENABLED")
+				diagram.render()
+			else
+				print("Diagram rendering: DISABLED")
+				diagram.clear()
+			end
+		end
+
+		vim.keymap.set("n", "<leader>td", toggle_diagram, { desc = "Toggle Diagram Rendering" })
+	end,
 }
