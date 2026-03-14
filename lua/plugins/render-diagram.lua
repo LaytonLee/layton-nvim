@@ -5,7 +5,7 @@ return {
 	},
 	opts = { -- you can just pass {}, defaults below
 		events = {
-			render_buffer = { "InsertLeave", "BufWinEnter", "TextChanged" },
+			render_buffer = {}, -- "InsertLeave", "BufWinEnter", "TextChanged"
 			clear_buffer = { "BufLeave" },
 		},
 		renderer_options = {
@@ -44,7 +44,7 @@ return {
 			return
 		end
 
-		local rendering_enabled = true
+		local rendering_enabled = false
 
 		local diagram = require("diagram")
 		diagram.setup(opts)
