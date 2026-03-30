@@ -13,7 +13,7 @@ return {
 					"lua_ls",
 					"gopls",
 					"pyright",
-					"tsserver",
+					"ts_ls", -- typescript language server
 					"tailwindcss",
 					"nginx_language_server",
 				},
@@ -24,9 +24,8 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			local lspconfig = require("lspconfig")
 
-			lspconfig.lua_ls.setup({
+			vim.lsp.config("lua_ls", {
 				capabilities = capabilities,
 				settings = {
 					Lua = {
@@ -34,7 +33,8 @@ return {
 					},
 				},
 			})
-			lspconfig.gopls.setup({
+
+			vim.lsp.config("gopls", {
 				capabilities = capabilities,
 				settings = {
 					gopls = {
@@ -50,7 +50,8 @@ return {
 					},
 				},
 			})
-			lspconfig.pyright.setup({
+
+			vim.lsp.config("pyright", {
 				capabilities = capabilities,
 				filetypes = { "python" },
 				single_file_support = true,
@@ -65,7 +66,7 @@ return {
 				},
 			})
 
-			lspconfig.tsserver.setup({
+			vim.lsp.config("ts_ls", {
 				capabilities = capabilities,
 				filetypes = {
 					"javascript",
@@ -78,11 +79,11 @@ return {
 				single_file_support = true,
 			})
 
-			lspconfig.tailwindcss.setup({
+			vim.lsp.config("tailwindcss", {
 				capabilities = capabilities,
 			})
 
-			lspconfig.nginx_language_server.setup({
+			vim.lsp.config("nginx_language_server", {
 				capabilities = capabilities,
 			})
 
