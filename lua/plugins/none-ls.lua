@@ -8,7 +8,7 @@ return {
 		},
 		config = function()
 			require("mason-null-ls").setup({
-				ensure_installed = { "stylua", "prettier", "black", "isort", "gofmt", "nginx_beautifier", "eslint_d", "beautysh" },
+				ensure_installed = { "stylua", "prettier", "black", "isort", "gofmt", "nginx_beautifier", "eslint_d", "shfmt" },
 			})
 		end,
 	},
@@ -30,7 +30,7 @@ return {
 					null_ls.builtins.formatting.isort, -- for python
 					null_ls.builtins.formatting.gofmt, -- for go
 					null_ls.builtins.formatting.nginx_beautifier, -- for nginx.conf
-					null_ls.builtins.formatting.beautysh,  -- for "bash", "csh", "ksh", "sh", "zsh"
+					null_ls.builtins.formatting.shfmt,
 					require("none-ls.diagnostics.eslint_d"), -- for typescript, javascript
 				},
 			})
