@@ -9,70 +9,67 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
-			vim.lsp.config("lua_ls", {
-				capabilities = capabilities,
-				settings = {
-					Lua = {
-						hint = { enable = true },
-					},
-				},
-			})
-
-			vim.lsp.config("gopls", {
-				capabilities = capabilities,
-				settings = {
-					gopls = {
-						hints = {
-							assignVariableTypes = true,
-							compositeLiteralFields = true,
-							compositeLiteralTypes = true,
-							constantValues = true,
-							functionTypeParameters = true,
-							parameterNames = true,
-							rangeVariableTypes = true,
+		opts = {
+			servers = {
+				lua_ls = {
+					settings = {
+						Lua = {
+							hint = { enable = true },
 						},
 					},
 				},
-			})
-
-			vim.lsp.config("pyright", {
-				capabilities = capabilities,
-				filetypes = { "python" },
-				single_file_support = true,
-				settings = {
-					python = {
-						analysis = {
-							autoSearchPaths = true,
-							diagnosticMode = "openFilesOnly",
-							useLibraryCodeForTypes = true,
+				gopls = {
+					settings = {
+						gopls = {
+							hints = {
+								assignVariableTypes = true,
+								compositeLiteralFields = true,
+								compositeLiteralTypes = true,
+								constantValues = true,
+								functionTypeParameters = true,
+								parameterNames = true,
+								rangeVariableTypes = true,
+							},
 						},
 					},
 				},
-			})
 
-			vim.lsp.config("ts_ls", {
-				capabilities = capabilities,
-				filetypes = {
-					"javascript",
-					"javascriptreact",
-					"javascript.jsx",
-					"typescript",
-					"typescriptreact",
-					"typescript.tsx",
+				pyright = {
+					filetypes = { "python" },
+					single_file_support = true,
+					settings = {
+						python = {
+							analysis = {
+								autoSearchPaths = true,
+								diagnosticMode = "openFilesOnly",
+								useLibraryCodeForTypes = true,
+							},
+						},
+					},
 				},
-				single_file_support = true,
-			})
 
-			vim.lsp.config("tailwindcss", {
-				capabilities = capabilities,
-			})
+				ts_ls = {
+					filetypes = {
+						"javascript",
+						"javascriptreact",
+						"javascript.jsx",
+						"typescript",
+						"typescriptreact",
+						"typescript.tsx",
+					},
+					single_file_support = true,
+				},
 
-			vim.lsp.config("nginx_language_server", {
-				capabilities = capabilities,
-			})
+				tailwindcss = {},
+				nginx_language_server = {},
+			},
+		},
+		config = function(_, opts)
+			local lspconfig = vim.lsp.config
+			for server, config in pairs(opts.servers) do
+				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
+				lspconfig(server, config)
+			end
 
 			vim.keymap.set("n", "gh", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})

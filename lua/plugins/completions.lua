@@ -1,84 +1,61 @@
 return {
-	{
-		"hrsh7th/cmp-nvim-lsp",
-	},
-	{
-		"L3MON4D3/LuaSnip",
-		dependencies = {
-			"saadparwaiz1/cmp_luasnip",
-			"rafamadriz/friendly-snippets",
+	"saghen/blink.cmp",
+	dependencies = { "rafamadriz/friendly-snippets" },
+
+	version = "*",
+
+	opts = {
+		keymap = {
+			preset = "default",
+
+			["<Tab>"] = { "select_next", "fallback" },
+			["<CR>"] = { "accept", "fallback" },
+
+			["<C-u>"] = { "scroll_signature_up", "fallback" },
+			["<C-d>"] = { "scroll_signature_down", "fallback" },
+
+			-- default in all keymap preset, just for remember
+			["<C-k>"] = { "show_signature", "hide_signature", "fallback" },
 		},
-		config = function()
-			local snippet_path = "./snippets"
 
-			-- Load friendly-snippets
-			require("luasnip.loaders.from_vscode").lazy_load()
+		appearance = {
+			nerd_font_variant = "mono",
+		},
 
-			-- Load VSCode-style JSON snippets from the folder
-			-- It's mandatory to have a `package.json` file in the snippet directory.
-			-- For examples, see [friendly-snippets](https://github.com/rafamadriz/friendly-snippets/blob/main/package.json).
-			require("luasnip.loaders.from_vscode").lazy_load({
-				paths = { snippet_path },
-			})
+		completion = {
+			-- (Default) Only show the documentation popup when manually triggered
+			documentation = { auto_show = false },
 
-			-- Load Lua-style snippets from the the folder
-			require("luasnip.loaders.from_lua").lazy_load({
-				paths = { snippet_path },
-			})
-		end,
-	},
-	{
-		"hrsh7th/nvim-cmp",
-
-		config = function()
-			local check_backspace = function()
-				local col = vim.fn.col(".") - 1
-				return col == 0 or vim.fn.getline("."):sub(col, col):match("%s")
-			end
-
-			local cmp = require("cmp")
-			local luasnip = require("luasnip")
-
-			cmp.setup({
-				snippet = {
-					-- REQUIRED - you must specify a snippet engine
-					expand = function(args)
-						require("luasnip").lsp_expand(args.body)
-					end,
+			list = {
+				selection = {
+					-- This is the "magic" setting:
+					-- 'preselect' = first item is highlighted immediately
+					-- 'manual' = nothing is highlighted until you move into the list
+					preselect = false,
+					auto_insert = false,
 				},
-				window = {
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
+			},
+
+			menu = {
+				-- This defines the look of the completion menu
+				draw = {
+					columns = {
+						-- Column 1: The icon (kind) and the name of the suggestion
+						-- Column 2: The source of the suggestion (LSP, Buffer, etc)
+						{ "kind_icon", "label", gap = 1 },
+						{ "source_name" },
+					},
 				},
-				mapping = cmp.mapping.preset.insert({
-					["<C-k>"] = cmp.mapping.select_prev_item(),
-					["<C-j>"] = cmp.mapping.select_next_item(),
-					["<C-b>"] = cmp.mapping.scroll_docs(-4),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
-					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-e>"] = cmp.mapping.abort(),
-					["<CR>"] = cmp.mapping.confirm({ select = false }), -- do not accept currently selected item by default
-					["<Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_next_item()
-						elseif luasnip.expandable() then
-							luasnip.expand()
-						elseif luasnip.expand_or_jumpable() then
-							luasnip.expand_or_jump()
-						elseif check_backspace() then
-							fallback()
-						else
-							fallback()
-						end
-					end, { "i", "s" }),
-				}),
-				sources = cmp.config.sources({
-					{ name = "nvim_lsp" },
-					{ name = "luasnip" }, -- For luasnip users.
-				}, {
-					{ name = "buffer" },
-				}),
-			})
-		end,
+			},
+		},
+
+		signature = { enabled = true },
+
+		sources = {
+			default = { "lsp", "path", "snippets", "buffer" },
+		},
+
+		fuzzy = { implementation = "prefer_rust_with_warning" },
 	},
+	opts_extend = { "sources.default" },
 }
