@@ -36,7 +36,7 @@ return {
 			formats = {
 				sections = {
 					{ section = "", height = 30 },
-					{ section = "header", gap = 10 },
+					{ section = "header" },
 					{ section = "keys" },
 					{ section = "startup" },
 				},
@@ -407,14 +407,14 @@ return {
 		},
 		-- LSP
 		{
-			"gd",
+			"gD",
 			function()
 				Snacks.picker.lsp_definitions()
 			end,
 			desc = "Goto Definition",
 		},
 		{
-			"gD",
+			"gdc",
 			function()
 				Snacks.picker.lsp_declarations()
 			end,
