@@ -430,14 +430,14 @@ return {
 		},
 		-- LSP
 		{
-			"gD",
+			"gd",
 			function()
 				Snacks.picker.lsp_definitions()
 			end,
 			desc = "Goto Definition",
 		},
 		{
-			"gdc",
+			"gD",
 			function()
 				Snacks.picker.lsp_declarations()
 			end,

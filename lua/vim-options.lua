@@ -52,3 +52,5 @@ vim.keymap.set("x", "J", ":move '>+1<CR>gv-gv", opts)
 vim.keymap.set("x", "K", ":move '<-2<CR>gv-gv", opts)
 vim.keymap.set("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 vim.keymap.set("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+
+vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Clear Highlight" })
