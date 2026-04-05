@@ -22,6 +22,10 @@ git clone https://github.com/LaytonLee/layton-nvim.git ~/.config/nvim
 
 ## Dependencies
 
+### lazygit
+
+https://github.com/jesseduffield/lazygit
+
 ### diagram.nvim
 
 #### [mermaid-cli](https://github.com/mermaid-js/mermaid-cli)

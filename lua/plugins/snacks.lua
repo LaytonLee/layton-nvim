@@ -49,7 +49,30 @@ return {
 			enabled = true,
 			timeout = 5000,
 		},
-		picker = { enabled = true },
+		picker = {
+			enabled = true,
+
+			win = {
+				input = {
+					keys = {
+						-- "L" for Right: Jump to the preview window
+						["<C-l>"] = { "focus_preview", mode = { "i", "n" } },
+						["<C-h>"] = { "focus_preview", mode = { "i", "n" } }, -- keep picker window
+						-- close picker
+						["<leader>q"] = { "close", mode = { "i", "n" } },
+					},
+				},
+				preview = {
+					keys = {
+						-- "H" for Left: Jump back to the input/results list
+						["<C-h>"] = { "focus_input", mode = { "i", "n" } },
+						["<C-l>"] = { "focus_input", mode = { "i", "n" } }, -- keep picker window
+						-- close picker
+						["<leader>q"] = { "close", mode = { "i", "n" } },
+					},
+				},
+			},
+		},
 		quickfile = { enabled = true },
 		scope = { enabled = true },
 		scroll = { enabled = true },
@@ -557,6 +580,18 @@ return {
 			desc = "which_key_ignore",
 		},
 		{
+			"<leader>tv",
+			function()
+				Snacks.terminal(nil, {
+					win = {
+						position = "right",
+						width = 0.4, -- 40% of the screen width
+					},
+				})
+			end,
+			desc = "Vertical Terminal",
+		},
+		{
 			"]]",
 			function()
 				Snacks.words.jump(vim.v.count1)
@@ -630,5 +665,13 @@ return {
 				Snacks.toggle.dim():map("<leader>uD")
 			end,
 		})
+
+		--           j
+		-- use  h <Ctrl> l  move between windows
+		--           k
+		vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], { desc = "Move left" })
+		vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], { desc = "Move up" })
+		vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], { desc = "Move down" })
+		vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], { desc = "Move right" })
 	end,
 }
