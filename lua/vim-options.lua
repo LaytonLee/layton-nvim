@@ -29,6 +29,8 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", opts)
 vim.keymap.set("n", "<C-k>", "<C-w>k", opts)
 vim.keymap.set("n", "<C-l>", "<C-w>l", opts)
 
+vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Clear Highlight" })
+
 -- move up and down faster
 vim.keymap.set("n", "J", ":+10<CR>", opts)
 vim.keymap.set("n", "K", ":-10<CR>", opts)
@@ -53,8 +55,8 @@ vim.keymap.set("x", "K", ":move '<-2<CR>gv-gv", opts)
 vim.keymap.set("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 vim.keymap.set("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
-vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Clear Highlight" })
 
+-- terminal --
 --           j
 -- use  h <Ctrl> l  move between windows
 --           k
