@@ -54,3 +54,11 @@ vim.keymap.set("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 vim.keymap.set("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<CR>", { desc = "Clear Highlight" })
+
+--           j
+-- use  h <Ctrl> l  move between windows
+--           k
+vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], { desc = "[Left] Move to the window to the left of the current one" })
+vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], { desc = "[Down] Move to the window below the current one" })
+vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], { desc = "[Up] Move to the window above the current one" })
+vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], { desc = "[Right] Move to the window to the right of the current one" })
