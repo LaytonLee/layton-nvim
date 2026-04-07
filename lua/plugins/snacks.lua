@@ -35,9 +35,9 @@ return {
 				keys = {
 					{ icon = " ", key = "e", desc = "New File", action = ":ene | startinsert" },
 					{ icon = " ", key = "ff", desc = "Find File", action = ":lua require('fzf-lua').files()" },
-					{ icon = " ", key = "fg", desc = "Find Text", action = ":Fzflua live_grep" },
-					{ icon = " ", key = "fo", desc = "Recent Files", action = ":Fzflua oldfiles" },
-					{ icon = " ", key = "s", desc = "Restore Session", section = "session" },
+					{ icon = " ", key = "fg", desc = "Find Text", action = ":lua require('fzf-lua').live_grep()" },
+					{ icon = " ", key = "fo", desc = "Recent Files", action = ":lua require('fzf-lua').oldfiles()" },
+					-- { icon = " ", key = "s", desc = "Restore Session", section = "session" },
 					{
 						icon = "󰒲 ",
 						key = "L",
