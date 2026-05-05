@@ -11,6 +11,13 @@ vim.cmd("set ignorecase smartcase")
 vim.cmd("set wildmenu")
 vim.cmd("set wildmode=longest:full,full")
 
+-- line wrapping
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.breakindent = true
+vim.opt.textwidth = 100
+vim.opt.colorcolumn = "+1"
+
 local opts = { noremap = true, silent = true }
 
 -- map space as leader key
@@ -55,12 +62,21 @@ vim.keymap.set("x", "K", ":move '<-2<CR>gv-gv", opts)
 vim.keymap.set("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 vim.keymap.set("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
-
 -- terminal --
 --           j
 -- use  h <Ctrl> l  move between windows
 --           k
-vim.keymap.set("t", "<C-h>", [[<Cmd>wincmd h<CR>]], { desc = "[Left] Move to the window to the left of the current one" })
+vim.keymap.set(
+	"t",
+	"<C-h>",
+	[[<Cmd>wincmd h<CR>]],
+	{ desc = "[Left] Move to the window to the left of the current one" }
+)
 vim.keymap.set("t", "<C-j>", [[<Cmd>wincmd j<CR>]], { desc = "[Down] Move to the window below the current one" })
 vim.keymap.set("t", "<C-k>", [[<Cmd>wincmd k<CR>]], { desc = "[Up] Move to the window above the current one" })
-vim.keymap.set("t", "<C-l>", [[<Cmd>wincmd l<CR>]], { desc = "[Right] Move to the window to the right of the current one" })
+vim.keymap.set(
+	"t",
+	"<C-l>",
+	[[<Cmd>wincmd l<CR>]],
+	{ desc = "[Right] Move to the window to the right of the current one" }
+)
