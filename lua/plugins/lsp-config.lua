@@ -62,6 +62,9 @@ return {
 
 				tailwindcss = {},
 				nginx_language_server = {},
+
+				-- bash language server
+				bashls = {},
 			},
 		},
 		config = function(_, opts)

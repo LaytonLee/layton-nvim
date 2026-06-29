@@ -31,7 +31,7 @@ return {
 					null_ls.builtins.formatting.isort, -- for python
 					null_ls.builtins.formatting.gofmt, -- for go
 					null_ls.builtins.formatting.nginx_beautifier, -- for nginx.conf
-					null_ls.builtins.formatting.shfmt,
+					null_ls.builtins.formatting.shfmt, -- for bash
 					require("none-ls.diagnostics.eslint_d"), -- for typescript, javascript
 				},
 			})

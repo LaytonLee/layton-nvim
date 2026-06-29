@@ -14,6 +14,7 @@ return {
 			"ts_ls", -- typescript language server
 			"tailwindcss",
 			"nginx_language_server",
+			"bash-language-server",
 
 			--- Formatters/Linters (none-ls)
 			"stylua",
