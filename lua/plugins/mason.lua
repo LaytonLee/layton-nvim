@@ -15,6 +15,8 @@ return {
 			"tailwindcss",
 			"nginx_language_server",
 			"bash-language-server",
+			"vue_ls", -- vue language server
+			"vtsls", -- vue_ls dependency
 
 			--- Formatters/Linters (none-ls)
 			"stylua",

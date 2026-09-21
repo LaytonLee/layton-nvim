@@ -32,7 +32,11 @@ return {
 					null_ls.builtins.formatting.gofmt, -- for go
 					null_ls.builtins.formatting.nginx_beautifier, -- for nginx.conf
 					null_ls.builtins.formatting.shfmt, -- for bash
-					require("none-ls.diagnostics.eslint_d"), -- for typescript, javascript
+
+					-- for typescript, javascript
+					-- need to initialize eslint in the working directory by execute:
+					--   npm init @eslint/config@latest
+					require("none-ls.diagnostics.eslint_d"),
 				},
 			})
 

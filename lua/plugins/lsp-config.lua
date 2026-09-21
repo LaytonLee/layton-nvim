@@ -1,3 +1,18 @@
+local vue_language_server_path = ""
+local ok, mason_registry = pcall(require, "mason-registry")
+
+if ok and mason_registry.is_installed("vue-language-server") then
+	vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+		.. "/node_modules/@vue/language-server"
+end
+
+local vue_plugin = {
+	name = "@vue/typescript-plugin",
+	location = vue_language_server_path,
+	languages = { "vue" },
+	configNamespace = "typescript",
+}
+
 return {
 	{
 		"williamboman/mason-lspconfig.nvim",
@@ -49,15 +64,30 @@ return {
 				},
 
 				ts_ls = {
+					init_options = {
+						plugins = { vue_plugin },
+					},
 					filetypes = {
 						"javascript",
 						"javascriptreact",
-						"javascript.jsx",
 						"typescript",
 						"typescriptreact",
-						"typescript.tsx",
+						"vue",
 					},
 					single_file_support = true,
+				},
+
+				-- vue language server, require vtsls to support typescript
+				vue_ls = {},
+				vtsls = {
+					settings = {
+						vtsls = {
+							tsserver = {
+								globalPlugins = { vue_plugin },
+							},
+						},
+					},
+					filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
 				},
 
 				tailwindcss = {},
@@ -73,6 +103,8 @@ return {
 				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
 				lspconfig(server, config)
 			end
+			-- vue
+			vim.lsp.enable({ "vtsls", "vue_ls" })
 
 			vim.keymap.set("n", "gh", vim.lsp.buf.hover, {})
 
