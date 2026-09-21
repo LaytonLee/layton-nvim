@@ -11,12 +11,28 @@ vim.cmd("set ignorecase smartcase")
 vim.cmd("set wildmenu")
 vim.cmd("set wildmode=longest:full,full")
 
--- line wrapping
-vim.opt.wrap = true
-vim.opt.linebreak = true
-vim.opt.breakindent = true
-vim.opt.textwidth = 100
-vim.opt.colorcolumn = "+1"
+-- default line wrapping: hard wrap
+-- vim.opt.wrap = true
+-- vim.opt.linebreak = true
+-- vim.opt.breakindent = true
+-- vim.opt.textwidth = 100
+-- vim.opt.colorcolumn = "+1"
+
+-- set soft wrap for markdown
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = "markdown",
+-- 	callback = function()
+-- 		-- Force soft wrap behaviors
+-- 		vim.opt_local.wrap = true
+-- 		vim.opt_local.linebreak = true
+-- 		vim.opt_local.breakindent = true -- Keeps wrapped text indented under the numbers!
+-- 		vim.opt_local.textwidth = 0
+-- 		-- vim.opt_local.wrapmargin = 0
+-- 
+-- 		-- Strip 't' (hard auto-wrap)
+-- 		vim.opt_local.formatoptions:remove("t")
+-- 	end,
+-- })
 
 local opts = { noremap = true, silent = true }
 
