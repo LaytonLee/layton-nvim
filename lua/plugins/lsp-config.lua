@@ -77,7 +77,7 @@ return {
 					single_file_support = true,
 				},
 
-				-- vue language server, require vtsls to support typescript
+				-- vue language server, require vtsls or ts_ls to support typescript
 				vue_ls = {},
 				vtsls = {
 					settings = {
@@ -98,17 +98,21 @@ return {
 			},
 		},
 		config = function(_, opts)
-			local lspconfig = vim.lsp.config
-			for server, config in pairs(opts.servers) do
-				config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-				lspconfig(server, config)
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+			for server, server_config in pairs(opts.servers) do
+				server_config.capabilities = capabilities
+				vim.lsp.config(server, server_config)
 			end
-			-- vue
-			vim.lsp.enable({ "vtsls", "vue_ls" })
+
+			vim.lsp.enable(vim.tbl_keys(opts.servers))
 
 			vim.keymap.set("n", "gh", vim.lsp.buf.hover, {})
 
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+			-- vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
+			vim.keymap.set("n", "gd", function()
+				require("snacks").picker.lsp_definitions()
+			end, {})
 
 			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
 			vim.keymap.set("n", "<leader>le", vim.diagnostic.open_float, {})
