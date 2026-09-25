@@ -40,10 +40,11 @@ return {
 				-- This defines the look of the completion menu
 				draw = {
 					columns = {
-						-- Column 1: The icon (kind) and the name of the suggestion
-						-- Column 2: The source of the suggestion (LSP, Buffer, etc)
-						{ "kind_icon", "label", gap = 1 },
-						{ "source_name" },
+						-- kind: variable, function...
+						-- label: completion item
+						-- source_name: The source of the suggestion (LSP, Buffer, etc)
+						{ "kind_icon", "label", "label_description", gap = 1 },
+						{ "kind", "source_name", gap = 1 },
 					},
 				},
 			},
